@@ -1,0 +1,1006 @@
+push 10000
+pop rax
+push 20000
+pop rbx
+push 30000
+pop rcx
+push 40000
+pop rdx
+push 0
+pop rex
+
+push 3434 // push the number
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+out
+pop
+push 0 // push the number
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+while_00806170:
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 10 // push the number
+
+ja :end_while_00805F18 // if the first expr is less than the second or equal, do the next->
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // shift the local-variables address to start the next function
+push rex
+add
+pop rex
+call :fibonach // call the function
+push rex // shift backwards the local-variables address to end the previous function
+push 1
+sub
+pop rex
+out
+pop
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // push the number
+
+add
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+jump :while_00806170 // check the while-condition again
+end_while_00805F18:
+push 1 // push the number
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+while_00805E50:
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 10 // push the number
+
+ja :end_while_008062D8 // if the first expr is less than the second or equal, do the next->
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // shift the local-variables address to start the next function
+push rex
+add
+pop rex
+call :factorial // call the function
+push rex // shift backwards the local-variables address to end the previous function
+push 1
+sub
+pop rex
+out
+pop
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // push the number
+
+add
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+jump :while_00805E50 // check the while-condition again
+end_while_008062D8:
+push 0 // push the number
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+push 0 // push the number
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+push 0 // push the number
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+in // scan the variable
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+in // scan the variable
+push rex
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+in // scan the variable
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // shift the local-variables address to start the next function
+push rex
+add
+pop rex
+call :solve_square // call the function
+push rex // shift backwards the local-variables address to end the previous function
+push 1
+sub
+pop rex
+
+hlt
+
+fibonach:
+
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+
+pop [rbx + 0] // gets all parameters from parent-function
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jne :end_if_0080A1F0 // if two expression are equal, do the next:
+
+// put the expression in stack and return:
+
+push 0 // push the number
+
+ret // return from the func
+
+end_if_0080A1F0:
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // push the number
+
+jne :end_if_0080A650 // if two expression are equal, do the next:
+
+// put the expression in stack and return:
+
+push 1 // push the number
+
+ret // return from the func
+
+end_if_0080A650:
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // push the number
+
+sub
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 2 // push the number
+
+sub
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // shift the local-variables address to start the next function
+push rex
+add
+pop rex
+call :fibonach // call the function
+push rex // shift backwards the local-variables address to end the previous function
+push 1
+sub
+pop rex
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // shift the local-variables address to start the next function
+push rex
+add
+pop rex
+call :fibonach // call the function
+push rex // shift backwards the local-variables address to end the previous function
+push 1
+sub
+pop rex
+add
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+// put the expression in stack and return:
+
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+ret // return from the func
+
+factorial:
+
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+
+pop [rbx + 0] // gets all parameters from parent-function
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // push the number
+
+jne :end_if_0080B318 // if two expression are equal, do the next:
+
+// put the expression in stack and return:
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+ret // return from the func
+
+end_if_0080B318:
+// put the expression in stack and return:
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 1 // push the number
+
+sub
+
+push 1 // shift the local-variables address to start the next function
+push rex
+add
+pop rex
+call :factorial // call the function
+push rex // shift backwards the local-variables address to end the previous function
+push 1
+sub
+pop rex
+mul
+
+ret // return from the func
+
+solve_square:
+
+push rex
+push 30
+mul
+push 0
+add
+push rax
+add
+pop rbx
+
+pop [rbx + 2] // gets all parameters from parent-function
+pop [rbx + 1] // gets all parameters from parent-function
+pop [rbx + 2] // gets all parameters from parent-function
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jne :end_if_0080B728 // if two expression are equal, do the next:
+
+// push the variable:
+push rex
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jne :end_if_0080BA08 // if two expression are equal, do the next:
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jne :end_if_0080BB70 // if two expression are equal, do the next:
+
+push -1 // push the number
+
+out
+pop
+ret // return from the func
+
+end_if_0080BB70:
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+je :end_if_0080B9E0 // if two expression are not equal, do the next:
+
+push 0 // push the number
+
+out
+pop
+ret // return from the func
+
+end_if_0080B9E0:
+end_if_0080BA08:
+// push the variable:
+push rex
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+je :end_if_0080B968 // if two expression are not equal, do the next:
+
+push 1 // push the number
+
+out
+pop
+push -1 // push the number
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+div
+
+mul
+
+out
+pop
+ret // return from the func
+
+end_if_0080B968:
+end_if_0080B728:
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+je :end_if_0080BE68 // if two expression are not equal, do the next:
+
+// push the variable:
+push rex
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 2 // push the number
+
+pow
+
+push 4 // push the number
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+mul
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+mul
+
+sub
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+push -1 // push the number
+
+// push the variable:
+push rex
+push 30
+mul
+push 1
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+div
+
+push 2 // push the number
+
+div
+
+mul
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jae :end_if_0080CCE8 // if the first expr is less than the second, do the next:
+
+push 0 // push the number
+
+out
+pop
+ret // return from the func
+
+end_if_0080CCE8:
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jne :end_if_0080CC48 // if two expression are equal, do the next:
+
+push 1 // push the number
+
+out
+pop
+// push the variable:
+push rex
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+out
+pop
+ret // return from the func
+
+end_if_0080CC48:
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0 // push the number
+
+jbe :end_if_0080CF40 // if the first expr is greater than the second, do the next:
+
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+push 0.5 // push the number
+
+pow
+
+// push the variable:
+push rex
+push 30
+mul
+push 2
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+div
+
+push 2 // push the number
+
+div
+
+
+push rex // put the out-number of stack into the variable
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+pop [rbx]
+
+push 2 // push the number
+
+out
+pop
+// push the variable:
+push rex
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+add
+
+out
+pop
+// push the variable:
+push rex
+push 30
+mul
+push 4
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+// push the variable:
+push rex
+push 30
+mul
+push 3
+add
+push rax
+add
+pop rbx
+push [rbx]
+
+sub
+
+out
+pop
+end_if_0080CF40:
+end_if_0080BE68:
+ret // return from the func
+
