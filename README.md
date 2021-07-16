@@ -12,7 +12,7 @@ Let's begin with some basic things.
 ```C++
 main
 {
-	print(5); // number 5 is printed in console.
+    print(5); // number 5 is printed in console.
     // Also you can use such comments, as in C++
 }
 ```
@@ -20,19 +20,19 @@ main
 ```C++
 main
 {
-	call_print();
+    call_print();
 }
 
 call_print()
 {
-	print(5);
+    print(5);
 }
 ```
 5. Working with variables is the following: they don't need any declaration; the first usage of certain variable is its first declaration (as in Basic language). Example:
 ```C++
 main
 {
-	print(x); // is possible, but printed value is undefined
+    print(x); // is possible, but printed value is undefined
     
     y = 0;
     print(y); // 0 is printed on console
