@@ -36,13 +36,8 @@ set(COMPILER_LIB_SRC "compiler_lib_src")
 
 set(TEXT_LIB_NAME "text")
 
-set(TEXT_LIB_SRC
-    ${COMPILER_LIB_SRC}/libtext/text_func.cpp
-)
-
-add_library(${TEXT_LIB_NAME} STATIC)
-target_include_directories(${TEXT_LIB_NAME} PRIVATE ${COMPILER_LIB_SRC}/libtext)
-target_sources(${TEXT_LIB_NAME} PRIVATE ${TEXT_LIB_SRC})
+set(TEXT_LIB_DIR libtext)
+add_subdirectory(${COMPILER_LIB_SRC}/${TEXT_LIB_DIR} ${TEXT_LIB_DIR})
 
 # TREE
 
@@ -68,9 +63,8 @@ set(LANG_FRONTEND_SRC
 
 add_executable(${LANG_FRONTEND_NAME} ${LANG_FRONTEND_SRC})
 
-target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${COMPILER_LIB_SRC}/libtext)
+target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${COMPILER_LIB_SRC}/${TEXT_LIB_DIR})
 target_link_libraries(${LANG_FRONTEND_NAME} ${TEXT_LIB_NAME})
-
 target_include_directories(${LANG_FRONTEND_NAME} PRIVATE tree)
 target_link_libraries(${LANG_FRONTEND_NAME} ${TREE_LIB_NAME})
 
@@ -88,9 +82,8 @@ set(LANG_OPTIMIZER_SRC
 
 add_executable(${LANG_OPTIMIZER_NAME} ${LANG_OPTIMIZER_SRC})
 
-target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE ${COMPILER_LIB_SRC}/libtext)
+target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE ${COMPILER_LIB_SRC}/${TEXT_LIB_DIR})
 target_link_libraries(${LANG_OPTIMIZER_NAME} ${TEXT_LIB_NAME})
-
 target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE tree)
 target_link_libraries(${LANG_OPTIMIZER_NAME} ${TREE_LIB_NAME})
 
