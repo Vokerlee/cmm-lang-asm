@@ -56,4 +56,22 @@ add_library(${TREE_LIB_NAME} STATIC)
 target_include_directories(${TREE_LIB_NAME} PRIVATE tree)
 target_sources(${TREE_LIB_NAME} PRIVATE ${TREE_LIB_SRC})
 
+# CMM FRONTEND
+
+set(LANG_FRONTEND_NAME "cmm_frontend")
+
+set(LANG_FRONTEND_SRC
+    frontend/main.cpp
+    frontend/parsing.cpp
+    frontend/tree_recording.cpp
+)
+
+add_executable(${LANG_FRONTEND_NAME} ${LANG_FRONTEND_SRC})
+
+target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${COMPILER_LIB_SRC}/libtext)
+target_link_libraries(${LANG_FRONTEND_NAME} ${TEXT_LIB_NAME})
+
+target_include_directories(${LANG_FRONTEND_NAME} PRIVATE tree)
+target_link_libraries(${LANG_FRONTEND_NAME} ${TREE_LIB_NAME})
+
 #########################################################################

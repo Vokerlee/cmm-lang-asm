@@ -30,10 +30,10 @@ int ERROR_STATE = 0;
     create_tree_element(VAR, value, nullptr, nullptr)
 
 
-void frontend (FILE *program, FILE *lang_tree)
+int frontend (FILE *program, FILE *lang_tree)
 {
-    assert(program);
-    assert(lang_tree);
+    if (program == NULL || lang_tree == NULL)
+        return -1;
 
     bin_tree tree = {};
     construct_tree(&tree, "tree");
@@ -50,13 +50,14 @@ void frontend (FILE *program, FILE *lang_tree)
     if (tree.root == nullptr)
     {
         destruct_tree(&tree);
-
-        return;
+        return -1;
     }
 
     record_tree(&tree, &var, lang_tree);
 
     destruct_tree(&tree);
+
+    return 0;
 }
 
 void fill_tree (bin_tree *tree, FILE *program, variables *var, elements *elem)
@@ -85,7 +86,7 @@ void fill_tree (bin_tree *tree, FILE *program, variables *var, elements *elem)
         }
         else if (isalpha(*(text.counter)))
         {
-            char *temp_var_name = (char *) calloc(MAX_VAR_NAME_LENGTH + 1, sizeof(char));
+            char temp_var_name[MAX_VAR_NAME_LENGTH + 1] = {0};
             char *start = text.counter;
             int num_var = 0;
 
@@ -137,8 +138,6 @@ void fill_tree (bin_tree *tree, FILE *program, variables *var, elements *elem)
                         break;
                 }
             }
-
-            free(temp_var_name);
         }
         else if (*(text.counter) == '+')
         {
@@ -236,6 +235,7 @@ void fill_tree (bin_tree *tree, FILE *program, variables *var, elements *elem)
 
     int counter = 0;
 
+    free(tree->root);
     tree->root = create_prog_tree(elem, &counter);
 
     destruct_text(&text);
@@ -243,6 +243,12 @@ void fill_tree (bin_tree *tree, FILE *program, variables *var, elements *elem)
     int size_tree = 0;
     recalc_size_tree(tree->root, &size_tree);
     tree->tree_size = size_tree;
+
+    for (size_t i = 0; i < elem->curr_size_; i++)
+    {
+        if (elem->elements_[i]->type == BRACKET || elem->elements_[i]->type == FIG_BRACKET)
+            free(elem->elements_[i]);
+    }
 
     ASSERT_TREE_OK_VOID
 }
@@ -267,6 +273,8 @@ int is_keyword (char *temp_var_name, int *type)
         return ARCTG;
     else if (strncmp(temp_var_name, "arcctg", 6) == 0)
         return ARCCTG;
+    else if (strncmp(temp_var_name, "exp", 3) == 0)
+        return EXP;
     else if (strncmp(temp_var_name, "sh", 2) == 0)
         return SH;
     else if (strncmp(temp_var_name, "ch", 2) == 0)
@@ -786,9 +794,9 @@ bin_tree_elem *create_n_tree (elements *elem, int *counter)
 void syntax_error(text_t *text, elements *elem, int line, const char *file)
 {
     assert(elem);
-    printf("Syntax error [%d line in cpp] (%s).\n"
+    fprintf(stderr, "Syntax error [%d line in cpp] (%s).\n"
            "Process of file-reading terminated. Please, use the right syntax.\n", line, file);
-    printf("You have an error in line %d in file: ", text->lines[text->line_counter].real_num_line + 1);
+    fprintf(stderr, "You have an error in line %ld in file: ", text->lines[text->line_counter].real_num_line + 1);
 
     switch(ERROR_STATE)
     {
