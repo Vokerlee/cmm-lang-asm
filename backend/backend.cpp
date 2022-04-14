@@ -373,6 +373,12 @@ void analyse_expr (bin_tree_elem *element, FILE *assmbl, variables *var)
 
         fprintf(assmbl, "tg\n\n");
     }
+    else if (element->type == FUNC && (int) element->value == CTG)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "ctg\n\n");
+    }
     else if (element->type == FUNC && (int) element->value == ARCSIN)
     {
         analyse_expr(element->left, assmbl, var);
@@ -390,6 +396,48 @@ void analyse_expr (bin_tree_elem *element, FILE *assmbl, variables *var)
         analyse_expr(element->left, assmbl, var);
 
         fprintf(assmbl, "arctg\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == ARCCTG)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "arcctg\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == SH)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "sh\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == CH)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "ch\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == TH)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "th\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == CTH)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "cth\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == EXP)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "exp\n\n");
+    }
+    else if (element->type == FUNC && (int) element->value == LN)
+    {
+        analyse_expr(element->left, assmbl, var);
+
+        fprintf(assmbl, "ln\n\n");
     }
     else if (element->type == FUNC && (int) element->value == POWER)
     {

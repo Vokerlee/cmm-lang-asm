@@ -64,5 +64,4 @@ void func_asm (bin_tree_elem *vertex, FILE *assmbl, variables *var);
 
 void user_func_optimize (bin_tree_elem *element, int *param, int n_param);
 
-
 #endif // BACKEND_H_INCLUDED
