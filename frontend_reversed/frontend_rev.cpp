@@ -283,6 +283,13 @@ void print_expression (bin_tree_elem *element, FILE *lang, variables *var)
                 fprintf(lang, ")");
                 break;
             }
+            case CTG:
+            {
+                fprintf(lang, "ctg(");
+                print_expression(element->left, lang, var);
+                fprintf(lang, ")");
+                break;
+            }
             case ARCTG:
             {
                 fprintf(lang, "arctg(");
@@ -297,9 +304,30 @@ void print_expression (bin_tree_elem *element, FILE *lang, variables *var)
                 fprintf(lang, ")");
                 break;
             }
-            case CTG:
+            case SH:
             {
-                fprintf(lang, "ctg(");
+                fprintf(lang, "sh(");
+                print_expression(element->left, lang, var);
+                fprintf(lang, ")");
+                break;
+            }
+            case CH:
+            {
+                fprintf(lang, "ch(");
+                print_expression(element->left, lang, var);
+                fprintf(lang, ")");
+                break;
+            }
+            case TH:
+            {
+                fprintf(lang, "th(");
+                print_expression(element->left, lang, var);
+                fprintf(lang, ")");
+                break;
+            }
+            case CTH:
+            {
+                fprintf(lang, "cth(");
                 print_expression(element->left, lang, var);
                 fprintf(lang, ")");
                 break;
@@ -307,6 +335,13 @@ void print_expression (bin_tree_elem *element, FILE *lang, variables *var)
             case LN:
             {
                 fprintf(lang, "ln(");
+                print_expression(element->left, lang, var);
+                fprintf(lang, ")");
+                break;
+            }
+            case EXP:
+            {
+                fprintf(lang, "exp(");
                 print_expression(element->left, lang, var);
                 fprintf(lang, ")");
                 break;
