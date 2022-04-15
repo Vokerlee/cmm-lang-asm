@@ -1,0 +1,203 @@
+The number in the pick of stack is 0
+
+The number in the pick of stack is 1
+
+The number in the pick of stack is 2
+
+The number in the pick of stack is 3
+
+The number in the pick of stack is 4
+
+The number in the pick of stack is 5
+
+The number in the pick of stack is 6
+
+The number in the pick of stack is 7
+
+The number in the pick of stack is 8
+
+The number in the pick of stack is 9
+
+The number in the pick of stack is 10
+
+The number in the pick of stack is 11
+
+The number in the pick of stack is 12
+
+The number in the pick of stack is 13
+
+The number in the pick of stack is 14
+
+The number in the pick of stack is 15
+
+The number in the pick of stack is 16
+
+The number in the pick of stack is 17
+
+The number in the pick of stack is 18
+
+The number in the pick of stack is 19
+
+The number in the pick of stack is 20
+
+The number in the pick of stack is 21
+
+The number in the pick of stack is 22
+
+The number in the pick of stack is 23
+
+The number in the pick of stack is 24
+
+The number in the pick of stack is 25
+
+The number in the pick of stack is 26
+
+The number in the pick of stack is 27
+
+The number in the pick of stack is 28
+
+The number in the pick of stack is 29
+
+The number in the pick of stack is 30
+
+The number in the pick of stack is 31
+
+The number in the pick of stack is 32
+
+The number in the pick of stack is 33
+
+The number in the pick of stack is 34
+
+The number in the pick of stack is 35
+
+The number in the pick of stack is 36
+
+The number in the pick of stack is 37
+
+The number in the pick of stack is 38
+
+The number in the pick of stack is 39
+
+The number in the pick of stack is 40
+
+The number in the pick of stack is 41
+
+The number in the pick of stack is 42
+
+The number in the pick of stack is 43
+
+The number in the pick of stack is 44
+
+The number in the pick of stack is 45
+
+The number in the pick of stack is 46
+
+The number in the pick of stack is 47
+
+The number in the pick of stack is 48
+
+The number in the pick of stack is 49
+
+The number in the pick of stack is 50
+
+The number in the pick of stack is 51
+
+The number in the pick of stack is 52
+
+The number in the pick of stack is 53
+
+The number in the pick of stack is 54
+
+The number in the pick of stack is 55
+
+The number in the pick of stack is 56
+
+The number in the pick of stack is 57
+
+The number in the pick of stack is 58
+
+The number in the pick of stack is 59
+
+The number in the pick of stack is 60
+
+The number in the pick of stack is 61
+
+The number in the pick of stack is 62
+
+The number in the pick of stack is 63
+
+The number in the pick of stack is 64
+
+The number in the pick of stack is 65
+
+The number in the pick of stack is 66
+
+The number in the pick of stack is 67
+
+The number in the pick of stack is 68
+
+The number in the pick of stack is 69
+
+The number in the pick of stack is 70
+
+The number in the pick of stack is 71
+
+The number in the pick of stack is 72
+
+The number in the pick of stack is 73
+
+The number in the pick of stack is 74
+
+The number in the pick of stack is 75
+
+The number in the pick of stack is 76
+
+The number in the pick of stack is 77
+
+The number in the pick of stack is 78
+
+The number in the pick of stack is 79
+
+The number in the pick of stack is 80
+
+The number in the pick of stack is 81
+
+The number in the pick of stack is 82
+
+The number in the pick of stack is 83
+
+The number in the pick of stack is 84
+
+The number in the pick of stack is 85
+
+The number in the pick of stack is 86
+
+The number in the pick of stack is 87
+
+The number in the pick of stack is 88
+
+The number in the pick of stack is 89
+
+The number in the pick of stack is 90
+
+The number in the pick of stack is 91
+
+The number in the pick of stack is 92
+
+The number in the pick of stack is 93
+
+The number in the pick of stack is 94
+
+The number in the pick of stack is 95
+
+The number in the pick of stack is 96
+
+The number in the pick of stack is 97
+
+The number in the pick of stack is 98
+
+The number in the pick of stack is 99
+
+The number in the pick of stack is 24
+
+Remaining numbers in stack are: 
