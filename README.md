@@ -1,7 +1,9 @@
 # CMM (C--) Language
-CMM or C-- programming language is a a stripped-down version of C language, because it has the similar syntax with many restrictions (such as the absence of many libraries or dynamic memory allocation). All this means that CMM is a full-Turing language.
+
+CMM or C-- programming language is a a stripped-down version of C language, because it has the similar syntax with many restrictions (such as the absence of many libraries or dynamic memory allocation), also it supports only 1 source file with only 1 executable file (no linkage). CMM is a full-Turing language (!).
 
 Сontent:
+
 * [CMM Syntax](#cmm-syntax)
 * [CMM Frontend](#cmm-frontend)
 * [CMM Optimizer](#cmm-optimizer)
@@ -10,7 +12,8 @@ CMM or C-- programming language is a a stripped-down version of C language, beca
 
 ## CMM Syntax
 
-Let's begin with some basic things. 
+Let's begin with some basic things.
+
 1. The single data type in CMM is a `double` type.
 2. That is why there is no sense to define return-value type.
 3. Every program must have its entry point — `main` function. Example:
@@ -22,6 +25,7 @@ main
     // Also you can use such comments, as in C++.
 }
 ```
+
 4. There is an important feature: all functions don't need any declaration before its usage. So `main` functions should be always the first. Example:
 
 ```C++
@@ -35,7 +39,9 @@ call_print()
     print(5);
 }
 ```
+
 5. Working with variables is the following: they don't need any declaration; the first usage of certain variable is its first declaration (as in Basic language). Example:
+
 ```C++
 main
 {
@@ -45,6 +51,7 @@ main
     print(y); // 0 is printed in console
 }
 ```
+
 6. To calculate some expressions the following syntax is used:
 
 ```C++
@@ -61,6 +68,7 @@ main
                 // also there are arcsin, arccos, arctg and arcctg
 }
 ```
+
 7. Some questionable actions, such as division by 0, can cause the result that variable is corrupted (has NAN value, for example), so be very careful.
 8. To pass variables to functions you should do such actions:
 
@@ -79,6 +87,7 @@ print_2values(arg1, arg2)
     print(arg2);
 }
 ```
+
 9. Up to this point we have considered only `"void"` functions. But functions can return the value:
 
 ```C++
@@ -93,9 +102,13 @@ get_value(arg)
     return arg + 8; // to write more beautiful you can write // return (arg + 8);
 }
 ```
+
 10. Up to this point we have considered only `print` i/o function. But also there is a `scan` function, which gets the single variable as argument. Example: `scan(x);`.
+
 11. Also there is a `power` function, which work in the same way is `^` operator: `power(x, 2);` is `x^2`.
+
 12. Unique feature of CMM language is that it supports derivative calculations. For example:
+
 ```C++
 main
 {
@@ -105,6 +118,7 @@ main
     // the second argument is some exxpression
 }
 ```
+
 13. As in C language, there are conditional jumps:
 
 ```C++
@@ -132,6 +146,7 @@ main
     }
 }
 ```
+
 14. The last important thing that multi-function calls are supported in the same way as in C, so recursion is supported too:
 
 ```C++
@@ -147,14 +162,14 @@ fibonach (x)
     {
         return 0;
     }
-	
+    
     if (x == 1)
-	{
+    {
         return 1;
     }
-	
+    
     c = fibonach(x - 1) + fibonach(x - 2);
-	
+    
     return c;
 }
 ```
@@ -185,40 +200,54 @@ The aim of CMM frontend is to parse the syntax of written program and create tre
 * ExpressionPrimeTerm ::= Variable | Number
 * Number ::= ['0'-'9']+ “{nil} {nil}“
 
-To convert program into tree-file use `frontend.exe` in console:
-```batch
-"frontend.exe" source.cmm tree_file.tree
-```
-
 ## CMM Optimizer
 
-Optimizer is language-independent part of CMM pack. It optimizes tree and calculate all derivatives. To launch optimizer use `optimizer.exe`:
-```batch
-"optimizer.exe" tree_file.tree optm_tree.tree
-```
+Optimizer is language-independent part of CMM pack. It optimizes tree and calculate all derivatives, if they exist.
 
 ## CMM Reversed frontend
 
-The aim of this part of CMM pack is to convert tree into CMM program. Everything is easy. Just call:
-```batch
-"frontend_rev.exe" file.tree program.cmm
-```
+The aim of this part of CMM pack is to convert tree into CMM program. Everything is easy.
 
 ## CMM Backend
 
-CMM Backend convert `.tree` file into `VASM (Vokerlee assembler)`, description of which you [can read here](https://github.com/Vokerlee/Introduction-to-compiler-technologies/tree/master/5.%20nCPU). 
-```batch
-"backend.exe" file.tree asm_code.vasm
+CMM Backend converts tree-file into `VASM (Vokerlee assembler)` file (part of `nCPU` project), description of which you [can read here](https://github.com/Vokerlee/Compiler-technologies/tree/master/nCPU).
+
+To know in more detail  how to work with `VASM` and compile `.vasm` programs you [can read here](https://github.com/Vokerlee/Compiler-technologies/tree/master/nCPU).
+
+## CMM Compilation && Usage
+
+### Preparation
+
+First, you should build the project. Clone current repository:
+
+```bash
+git clone --recurse-submodules https://github.com/Vokerlee/CMM-Language.git
 ```
 
-After all actions you should compile `.vasm` file with `asm.exe`:
-```batch
-"asm.exe" asm_code.vasm exe_code.ncpu
+Then enter cloned repository and create build directory and use `cmake` like this:
+
+```bash
+mkdir build && cd build
+cmake ..
 ```
 
-And such binary code is to be launched by `nCPU.exe`:
+Now you can use any build system you desire (like `Make`) and build the project. All `CMM` binaries are in `build` directory and all `nCPU` binaries are in `build/nCPU` directory.
 
-```batch
-"nCPU.exe" exe_code.ncpu
+### Usage
+
+Imagine we write some program in CMM language. Here is the full guide how we can get final `nCPU` binary file which can be executed:
+
+```bash
+./cmm_frontend program.cmm program.tree
+./lang_optimizer program.tree program_opt.tree
+./lang_backend program_opt.tree program.vasm
+
+./nCPU/asm_compiler program.vasm program.ncpu
+./nCPU/nCPU program.ncpu results.txt
 ```
-To know in more detail  how to work with `VASM` and compile `.vasm` programs you [can read here](https://github.com/Vokerlee/Introduction-to-compiler-technologies/tree/master/5.%20nCPU#compilation).
+
+Also it is possible to restore language-file from tree-file:
+
+```bash
+./cmm_frontend_rev program.tree program_restored.cmm
+```
