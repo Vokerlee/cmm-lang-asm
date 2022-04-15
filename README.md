@@ -9,7 +9,7 @@ CMM or C-- programming language is a a stripped-down version of C language, beca
 * [CMM Optimizer](#cmm-optimizer)
 * [CMM Reversed frontend](#cmm-reversed-frontend)
 * [CMM Backend](#cmm-backend)
-* [CMM Compilation && usage](#cmm-compilation-&&-usage)
+* [CMM Compilation && usage](#cmm-compilation--usage)
 
 ## CMM Syntax
 
