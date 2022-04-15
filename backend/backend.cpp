@@ -143,32 +143,32 @@ void command_asm_tree (bin_tree_elem *element, FILE *assmbl, variables *var)
         {
             case JE:
             {
-                fprintf(assmbl, "jne :end_if_%p // if two expression are equal, do the next:\n\n", element->left);
+                fprintf(assmbl, "jne :end_if_%p // if two expression are equal, do the next:\n\n", (void *) element->left);
                 break;
             }
             case JA:
             {
-                fprintf(assmbl, "jbe :end_if_%p // if the first expr is greater than the second, do the next:\n\n", element->left);
+                fprintf(assmbl, "jbe :end_if_%p // if the first expr is greater than the second, do the next:\n\n", (void *) element->left);
                 break;
             }
             case JAE:
             {
-                fprintf(assmbl, "jb :end_if_%p // if the first expr is greater than the second or equal, do the next:\n\n", element->left);
+                fprintf(assmbl, "jb :end_if_%p // if the first expr is greater than the second or equal, do the next:\n\n", (void *) element->left);
                 break;
             }
             case JB:
             {
-                fprintf(assmbl, "jae :end_if_%p // if the first expr is less than the second, do the next:\n\n", element->left);
+                fprintf(assmbl, "jae :end_if_%p // if the first expr is less than the second, do the next:\n\n", (void *) element->left);
                 break;
             }
             case JBE:
             {
-                fprintf(assmbl, "ja :end_if_%p // if the first expr is less than the second or equal, do the next:\n\n", element->left);
+                fprintf(assmbl, "ja :end_if_%p // if the first expr is less than the second or equal, do the next:\n\n", (void *) element->left);
                 break;
             }
             case JNE:
             {
-                fprintf(assmbl, "je :end_if_%p // if two expression are not equal, do the next:\n\n", element->left);
+                fprintf(assmbl, "je :end_if_%p // if two expression are not equal, do the next:\n\n", (void *) element->left);
                 break;
             }
             default:
@@ -177,11 +177,11 @@ void command_asm_tree (bin_tree_elem *element, FILE *assmbl, variables *var)
 
         body_asm(element->right, assmbl, var);
 
-        fprintf(assmbl, "end_if_%p:\n", element->left);
+        fprintf(assmbl, "end_if_%p:\n", (void *) element->left);
     }
     else if (element->type == COMMAND && (int) element->value == WHILE)
     {
-        fprintf(assmbl, "while_%p:\n", element);
+        fprintf(assmbl, "while_%p:\n", (void *) element);
 
         analyse_expr(element->left->left,  assmbl, var);
         analyse_expr(element->left->right, assmbl, var);
@@ -190,32 +190,32 @@ void command_asm_tree (bin_tree_elem *element, FILE *assmbl, variables *var)
         {
             case JE:
             {
-                fprintf(assmbl, "je :end_while_%p // if two expression are equal, do the next->\n\n", element->left);
+                fprintf(assmbl, "je :end_while_%p // if two expression are equal, do the next->\n\n", (void *) element->left);
                 break;
             }
             case JA:
             {
-                fprintf(assmbl, "jbe :end_while_%p // if the first expr is greater than the second, do the next->\n\n", element->left);
+                fprintf(assmbl, "jbe :end_while_%p // if the first expr is greater than the second, do the next->\n\n", (void *) element->left);
                 break;
             }
             case JAE:
             {
-                fprintf(assmbl, "jb :end_while_%p // if the first expr is greater than the second or equal, do the next->\n\n", element->left);
+                fprintf(assmbl, "jb :end_while_%p // if the first expr is greater than the second or equal, do the next->\n\n", (void *) element->left);
                 break;
             }
             case JB:
             {
-                fprintf(assmbl, "jae :end_while_%p // if the first expr is less than the second, do the next->\n\n", element->left);
+                fprintf(assmbl, "jae :end_while_%p // if the first expr is less than the second, do the next->\n\n", (void *) element->left);
                 break;
             }
             case JBE:
             {
-                fprintf(assmbl, "ja :end_while_%p // if the first expr is less than the second or equal, do the next->\n\n", element->left);
+                fprintf(assmbl, "ja :end_while_%p // if the first expr is less than the second or equal, do the next->\n\n", (void *) element->left);
                 break;
             }
             case JNE:
             {
-                fprintf(assmbl, "je :end_while_%p // if two expression are not equal, do the next->\n\n", element->left);
+                fprintf(assmbl, "je :end_while_%p // if two expression are not equal, do the next->\n\n", (void *) element->left);
                 break;
             }
             default:
@@ -223,9 +223,9 @@ void command_asm_tree (bin_tree_elem *element, FILE *assmbl, variables *var)
         }
 
         body_asm(element->right, assmbl, var);
-        fprintf(assmbl, "jump :while_%p // check the while-condition again\n", element);
+        fprintf(assmbl, "jump :while_%p // check the while-condition again\n", (void *) element);
 
-        fprintf(assmbl, "end_while_%p:\n", element->left);
+        fprintf(assmbl, "end_while_%p:\n", (void *) element->left);
     }
     else if (element->type == FUNC && ((int) element->value == SCAN || (int) element->value == PRINT))
     {

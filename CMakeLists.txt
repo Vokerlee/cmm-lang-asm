@@ -18,14 +18,7 @@ add_compile_options(
     -Wall
     -Wpedantic
 
-    -Wno-int-to-pointer-cast
-    -Wno-variadic-macros
-    -Wno-unused-variable
-    -Wno-unused-parameter
-    -Wno-unused-function
     -Wno-sign-compare
-    -Wno-misleading-indentation
-    -Wno-unused-but-set-variable
 )
 
 #########################################################################
@@ -39,16 +32,8 @@ add_subdirectory(${COMPILER_LIB_SRC}/${NCPU_DIR} ${CMAKE_CURRENT_BINARY_DIR}/${N
 
 # TEXT LIBRARY
 
-set(TEXT_LIB_PATH)
+set(TEXT_LIB_PATH text)
 set(TEXT_LIB_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${COMPILER_LIB_SRC}/libtext)
-
-find_library(TEXT_LIB_PATH NAMES text PATHS ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/${NCPU_DIR}/libtext)
-
-if (NOT TEXT_LIB_PATH)
-    set(TEXT_LIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/libtext)
-    add_subdirectory(${TEXT_LIB_SRC_DIR} ${TEXT_LIB_DIR})
-    set(TEXT_LIB_PATH text)
-endif()
 
 # TREE
 
