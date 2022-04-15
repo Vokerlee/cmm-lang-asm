@@ -2,13 +2,15 @@
 
 CMM or C-- programming language is a a stripped-down version of C language, because it has the similar syntax with many restrictions (such as the absence of many libraries or dynamic memory allocation), also it supports only 1 source file with only 1 executable file (no linkage). CMM is a full-Turing language (!).
 
+To build the project you are to have installed llvm package.
+
 Сontent:
 
 * [CMM Syntax](#cmm-syntax)
 * [CMM Frontend](#cmm-frontend)
 * [CMM Optimizer](#cmm-optimizer)
 * [CMM Reversed frontend](#cmm-reversed-frontend)
-* [CMM Backend](#cmm-backend)
+* [CMM Backend](#cmm-backend--llvm-generation)
 * [CMM Compilation && usage](#cmm-compilation--usage)
 
 ## CMM Syntax
@@ -209,11 +211,13 @@ Optimizer is language-independent part of CMM pack. It optimizes tree and calcul
 
 The aim of this part of CMM pack is to convert tree into CMM program.
 
-## CMM Backend
+## CMM Backend && LLVM IR generation
 
 CMM Backend converts tree-file into `VASM (Vokerlee assembler)` file (part of `nCPU` project), description of which you [can read here](https://github.com/Vokerlee/Compiler-technologies/tree/master/nCPU).
 
-To know in more detail  how to work with `VASM` and compile `.vasm` programs you [can read here](https://github.com/Vokerlee/Compiler-technologies/tree/master/nCPU).
+To know in more detail how to work with `VASM` and compile `.vasm` programs you [can read here](https://github.com/Vokerlee/Compiler-technologies/tree/master/nCPU).
+
+Also tree-file can be transformed into `LLVM IR` instead of `VASM` file.
 
 ## CMM Compilation && Usage
 
@@ -236,12 +240,15 @@ Now you can use any build system you desire (like `Make`) and build the project.
 
 ### Usage
 
-Imagine we write some program in CMM language. Here is the full guide how we can get final `nCPU` binary file which can be executed:
+Imagine we write some program in CMM language. Here is the full guide how we can get final `nCPU` binary file which can be executed or `LLVM IR` file which can be interpreted:
 
 ```bash
 ./cmm_frontend program.cmm program.tree
 ./lang_optimizer program.tree program_opt.tree
 ./lang_backend program_opt.tree program.vasm
+
+./lang_llvm_generate program_opt.tree program.ll
+./lli program.ll
 
 ./nCPU/asm_compiler program.vasm program.ncpu
 ./nCPU/nCPU program.ncpu results.txt

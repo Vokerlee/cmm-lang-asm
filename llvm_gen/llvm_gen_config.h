@@ -1,7 +1,5 @@
-#ifndef BACKEND_CONFIG_H_INCLUDED
-#define BACKEND_CONFIG_H_INCLUDED
-
-const int MAX_FILE_LENGTH = 200;
+#ifndef LLVM_GEN_CONFIG_H_INCLUDED
+#define LLVM_GEN_CONFIG_H_INCLUDED
 
 const int MAX_VAR_NUM           = 100;
 const int MAX_OPER_ROW          = 20;
@@ -10,11 +8,11 @@ const int MAX_VAR_NAME_LENGTH   = 40;
 const int MAX_FUNC_PARAM      = 15;
 const int MAX_VAR_IN_FUNC_NUM = 30;
 
-const int MARK_FUNC_USED_VARIABLE = 128;
-
 const int LEFT   = 0;
 const int RIGHT  = 1;
 const int VERTEX = -1;
+
+const int MARK_FUNC_USED_VARIABLE = 128;
 
 enum operators
 {
@@ -96,4 +94,4 @@ enum error_state
     END_OF_LINE_ERR = 3,
 };
 
-#endif // BACKEND_CONFIG_H_INCLUDED
+#endif // LLVM_GEN_CONFIG_H_INCLUDED

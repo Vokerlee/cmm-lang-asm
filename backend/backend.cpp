@@ -498,7 +498,7 @@ void func_asm (bin_tree_elem *vertex, FILE *assmbl, variables *var)
 
     first_loc_var = n_param;
 
-    user_func_optimize(vertex, param, n_param);
+    user_func_convert_variables(vertex, param, n_param);
 
     find_func_var (vertex->right, param, &n_param, first_loc_var);
 
@@ -524,10 +524,10 @@ void func_asm (bin_tree_elem *vertex, FILE *assmbl, variables *var)
     free(param);
 }
 
-void user_func_optimize (bin_tree_elem *element, int *param, int n_param)
+void user_func_convert_variables (bin_tree_elem *element, int *param, int n_param)
 {
     if (element->left != nullptr)
-        user_func_optimize(element->left, param, n_param);
+        user_func_convert_variables(element->left, param, n_param);
 
     if (element->type == VAR)
     {
@@ -535,7 +535,7 @@ void user_func_optimize (bin_tree_elem *element, int *param, int n_param)
 
         for (int i = 0; i < n_param; i++)
         {
-            if (param[i] == (int) element->value)
+            if (param[i] == (int) element->value) // if agrument of function
             {
                 find_state     = 1;
                 element->value = i;
@@ -543,9 +543,9 @@ void user_func_optimize (bin_tree_elem *element, int *param, int n_param)
         }
 
         if (find_state == 0 && element->value < n_param)
-            element->value += 100;   // the trick to mark the element of tree (for the future)
+            element->value += MARK_FUNC_USED_VARIABLE;   // the trick to mark the element of tree, which is not function argument
     }
 
     if (element->right != nullptr)
-        user_func_optimize(element->right, param, n_param);
+        user_func_convert_variables(element->right, param, n_param);
 }
