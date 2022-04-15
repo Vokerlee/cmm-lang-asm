@@ -32,16 +32,29 @@ add_compile_options(
 
 set(COMPILER_LIB_SRC "compiler_lib_src")
 
+# nCPU
+
+set(NCPU_DIR nCPU)
+add_subdirectory(${COMPILER_LIB_SRC}/${NCPU_DIR} ${CMAKE_CURRENT_BINARY_DIR}/${NCPU_DIR})
+
 # TEXT LIBRARY
 
-set(TEXT_LIB_NAME "text")
+set(TEXT_LIB_PATH)
+set(TEXT_LIB_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${COMPILER_LIB_SRC}/libtext)
 
-set(TEXT_LIB_DIR libtext)
-add_subdirectory(${COMPILER_LIB_SRC}/${TEXT_LIB_DIR} ${TEXT_LIB_DIR})
+find_library(TEXT_LIB_PATH NAMES text PATHS ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/${NCPU_DIR}/libtext)
+
+if (NOT TEXT_LIB_PATH)
+    set(TEXT_LIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/libtext)
+    add_subdirectory(${TEXT_LIB_SRC_DIR} ${TEXT_LIB_DIR})
+    set(TEXT_LIB_PATH text)
+endif()
 
 # TREE
 
 set(TREE_LIB_NAME "tree")
+set(TREE_LIB_PATH ${TREE_LIB_NAME})
+set(TREE_LIB_SRC_DIR ${TREE_LIB_NAME})
 
 set(TREE_LIB_SRC
     tree/tree.cpp
@@ -63,10 +76,10 @@ set(LANG_FRONTEND_SRC
 
 add_executable(${LANG_FRONTEND_NAME} ${LANG_FRONTEND_SRC})
 
-target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${COMPILER_LIB_SRC}/${TEXT_LIB_DIR})
-target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${TREE_LIB_NAME})
-target_link_libraries(${LANG_FRONTEND_NAME} ${TEXT_LIB_NAME})
-target_link_libraries(${LANG_FRONTEND_NAME} ${TREE_LIB_NAME})
+target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${TEXT_LIB_SRC_DIR})
+target_include_directories(${LANG_FRONTEND_NAME} PRIVATE ${TREE_LIB_SRC_DIR})
+target_link_libraries(${LANG_FRONTEND_NAME} ${TEXT_LIB_PATH})
+target_link_libraries(${LANG_FRONTEND_NAME} ${TREE_LIB_PATH})
 
 # LANG OPTIMIZER
 
@@ -82,10 +95,10 @@ set(LANG_OPTIMIZER_SRC
 
 add_executable(${LANG_OPTIMIZER_NAME} ${LANG_OPTIMIZER_SRC})
 
-target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE ${COMPILER_LIB_SRC}/${TEXT_LIB_DIR})
-target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE ${TREE_LIB_NAME})
-target_link_libraries(${LANG_OPTIMIZER_NAME} ${TEXT_LIB_NAME})
-target_link_libraries(${LANG_OPTIMIZER_NAME} ${TREE_LIB_NAME})
+target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE ${TEXT_LIB_SRC_DIR})
+target_include_directories(${LANG_OPTIMIZER_NAME} PRIVATE ${TREE_LIB_SRC_DIR})
+target_link_libraries(${LANG_OPTIMIZER_NAME} ${TEXT_LIB_PATH})
+target_link_libraries(${LANG_OPTIMIZER_NAME} ${TREE_LIB_PATH})
 
 # LANG REVERSED FRONTEND
 
@@ -99,10 +112,10 @@ set(CMM_REV_FRONTEND_SRC
 
 add_executable(${CMM_REV_FRONTEND_NAME} ${CMM_REV_FRONTEND_SRC})
 
-target_include_directories(${CMM_REV_FRONTEND_NAME} PRIVATE ${COMPILER_LIB_SRC}/${TEXT_LIB_DIR})
-target_include_directories(${CMM_REV_FRONTEND_NAME} PRIVATE ${TREE_LIB_NAME})
-target_link_libraries(${CMM_REV_FRONTEND_NAME} ${TEXT_LIB_NAME})
-target_link_libraries(${CMM_REV_FRONTEND_NAME} ${TREE_LIB_NAME})
+target_include_directories(${CMM_REV_FRONTEND_NAME} PRIVATE ${TEXT_LIB_SRC_DIR})
+target_include_directories(${CMM_REV_FRONTEND_NAME} PRIVATE ${TREE_LIB_SRC_DIR})
+target_link_libraries(${CMM_REV_FRONTEND_NAME} ${TEXT_LIB_PATH})
+target_link_libraries(${CMM_REV_FRONTEND_NAME} ${TREE_LIB_PATH})
 
 # LANG BACKEND
 
@@ -116,9 +129,9 @@ set(LANG_BACKEND_SRC
 
 add_executable(${LANG_BACKEND_NAME} ${LANG_BACKEND_SRC})
 
-target_include_directories(${LANG_BACKEND_NAME} PRIVATE ${COMPILER_LIB_SRC}/${TEXT_LIB_DIR})
-target_include_directories(${LANG_BACKEND_NAME} PRIVATE ${TREE_LIB_NAME})
-target_link_libraries(${LANG_BACKEND_NAME} ${TEXT_LIB_NAME})
-target_link_libraries(${LANG_BACKEND_NAME} ${TREE_LIB_NAME})
+target_include_directories(${LANG_BACKEND_NAME} PRIVATE ${TEXT_LIB_SRC_DIR})
+target_include_directories(${LANG_BACKEND_NAME} PRIVATE ${TREE_LIB_SRC_DIR})
+target_link_libraries(${LANG_BACKEND_NAME} ${TEXT_LIB_PATH})
+target_link_libraries(${LANG_BACKEND_NAME} ${TREE_LIB_PATH})
 
 #########################################################################
