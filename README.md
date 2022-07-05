@@ -1,5 +1,9 @@
 # CMM (C--) Language
 
+Almost the whole project was written in the 1st semester (1st year) of study at MIPT.
+
+## Foreword
+
 CMM or C-- programming language is a a stripped-down version of C language, because it has the similar syntax with many restrictions (such as the absence of many libraries or dynamic memory allocation), also it supports only 1 source file with only 1 executable file (no linkage). CMM is a full-Turing language (!).
 
 To build the project you are to have installed llvm package.
