@@ -1,6 +1,6 @@
 # CMM (C--) Language
 
-Almost the whole project was written in the 1st semester (1st year) of study at MIPT.
+**Almost the whole codebase of the project was written in the 1st semester (1st year) of study at MIPT.**
 
 ## Foreword
 
